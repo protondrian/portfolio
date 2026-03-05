@@ -10,6 +10,9 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      - name: Inject version
+        run: sed -i "s/v0\.0\.?/v0.0.${{ github.run_number }}/g" index.html
+
       - name: Deploy via SSH
         uses: appleboy/scp-action@v0.1.7
         with:
